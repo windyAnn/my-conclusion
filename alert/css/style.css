@@ -1,0 +1,62 @@
+html,body{padding: 0;margin: 0;height: 100%}
+.box-banding{
+   /* width: 200px;
+    height: 200px;
+    top:40%;
+    left: 50%;
+    margin-top: -100px;*/
+    border: 1px solid black;
+    box-shadow: 0 0 10px #000;
+    position: fixed;
+    background: white;
+}
+/*.box-banding{
+    width: 50px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    margin-left: -25px;
+    bottom: 20px;
+
+}*/
+.window-title{
+    text-align: center;
+    /*position: absolute;*/
+    background: #333;
+    color: white;
+    height: 30px;
+    line-height: 30px;
+}
+.close-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: white;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom: 1px solid black;
+}
+.footer{
+    position: absolute;
+    text-align: center;
+    width: 100%;/*居中的方法*/
+    bottom: 5px;
+}
+.footer input{
+
+    margin: 5px;
+}
+.skin_a .window-title{
+    background: red;
+}
+.window-mask{
+    height: 100%;
+    width: 100%;
+    background: black;
+    opacity: 0.1;
+    position: fixed;
+    left: 0;
+    top:0;
+}
