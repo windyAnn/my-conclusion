@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.0.0.js"></script>
+</head>
+<body>
+<div id="aDate"></div>
+<script>
+
+/*window.onload = function () {
+    showTime()
+};*/
+window.onload = function(){
+    showTime();
+};
+function checkTime(i) {
+    if(i<10){
+        i="0" + i;
+    }
+    return i;  //这里有什么关系？？？？
+
+}
+// 与上面一个的关系是什么？？？？
+/*function checkTime(i) {
+    if(i<10){
+        i="0" + i;
+    }else {
+
+    return i;  }//这里有什么关系？？？？
+
+}
+*/
+function showTime() {
+    var myDate = new Date();
+    console.log(myDate.getFullYear() + ' 年 '
+            + (myDate.getMonth()+1) + ' 月 '+
+            myDate.getDate() + ' 日 ');
+    var year = myDate.getFullYear(),
+            mouth = myDate.getMonth()+1,
+            date = myDate.getDate();
+    var d = myDate.getDay();
+    var arr = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+    var hour = myDate.getHours(),
+            m = myDate.getMinutes(),
+            s = myDate.getSeconds()
+            ;
+   var minute = checkTime(m),
+           second = checkTime(s);
+
+    document.getElementById('aDate').innerHTML =
+            year + ' 年 ' + mouth+ ' 月 '+ date + ' 日 ' +
+            arr[d] + hour + '：' + minute + '：' + second
+    ;
+    setTimeout("showTime()" , 500);
+}
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .nav {
+            position: fixed;
+            top: 300px;
+            right: 200px;
+
+        }
+
+        .nav li {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #ababab;
+        }
+        .nav ul li a{
+           display: block;
+            font-size: 20px;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        #content {
+            text-align: center;
+        }
+
+        .item {
+            width: 500px;
+            height: 1200px;
+            border: 1px solid black;
+            margin: 10px auto;
+        }
+
+        h2 {
+            margin-bottom: 150px;
+        }
+        .nav li a:hover,
+        .nav ul li a.active {
+            background: blue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="nav">
+    <ul>
+        <li ><a href="#item1" class="">1F</a></li>
+        <li><a href="#item2">2F</a></li>
+        <li><a href="#item3">3F</a></li>
+        <li><a href="#item4">4F</a></li>
+    </ul>
+</div>
+<div id="content">
+    <h1>地狗购物网</h1>
+    <div id="item1" class="item">
+        <h2>1F 男装</h2>
+        <h2>1F 男装</h2>
+        <h2>1F 男装</h2>
+        <h2>1F 男装</h2>
+    </div>
+    <div id="item2" class="item">
+        <h2>2F 男装</h2>
+        <h2>2F 男装</h2>
+        <h2>2F 男装</h2>
+        <h2>2F 男装</h2>
+    </div>
+    <div id="item3" class="item">
+        <h2>3F 男装</h2>
+        <h2>3F 男装</h2>
+        <h2>3F 男装</h2>
+        <h2>3F 男装</h2>
+    </div>
+    <div id="item4" class="item">
+        <h2>4F 男装</h2>
+        <h2>4F 男装</h2>
+        <h2>4F 男装</h2>
+        <h2>4F 男装</h2>
+    </div>
+</div>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    $(function () {
+        $(document).scroll(function () {
+            var top = $(document).scrollTop(),
+                    nav = $(".nav"),
+                    navLi = nav.find("a"),
+                    content = $("#content"),
+                    items = content.find(".item"),
+                    currentId = "";
+            /*方法一
+          //先把所有的active清除掉，
+            items.each(function (j,ele){
+                $(navLi[j]).removeClass("active");
+            });
+            //再找到他的位置关系
+            items.each(function (i,e) {
+               //这里已定要先判断i，不然会报错$(items[i+1]).offset().top，没有top的属性。
+                if(i<items.length-1){
+                    if ( $(items[i]).offset().top-100< top && top < $(items[i+1]).offset().top-55){
+                        $(navLi[i]).addClass("active");
+                    }
+                }
+                else if ( $(items[i]).offset().top < top && i==3){
+                    $(navLi[i]).addClass("active");
+                }
+            });
+            */
+
+
+            /*方法二*/
+            //第一步：遍历所有的items，如果滚动条的滚动高度top》某一个item的top值的话，相当于后面会覆盖前面的。则保存当前的currentId
+            items.each(function (i, e) {
+                var m = $(this);
+                console.log(m);
+                if (top > m.offset().top -300){
+                    currentId = "#" + m.attr("id");
+                }else {
+                    return false;
+                }
+            });
+            //第二步：如果nav.find(".active")的hre属性不等于当前的currentId时，
+            var currentLink = nav.find(".active");
+            if (currentId && currentLink.attr("href") != currentId){
+                currentLink.removeClass("active");
+                nav.find("[href=" + currentId +"]").addClass("active");
+            }
+
+
+
+        })
+
+    })
+
+</script>
+</body>
+</html>

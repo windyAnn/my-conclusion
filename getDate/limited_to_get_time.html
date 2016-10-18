@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div >
+    还剩：<input type="text" id="timeShow">
+</div>
+
+<script>
+
+    function showTime() {
+        var curTime = new Date(),
+                endTime = new Date("2016/10/20,12:20:12"),
+                leftTime = (endTime.getTime()-curTime.getTime())/1000,
+                day = parseInt(leftTime/(24*60*60)),
+                h =  parseInt((leftTime/(60*60))%24),
+                m = parseInt((leftTime/60)%60),
+                s = parseInt(leftTime%60);
+        document.getElementById('timeShow').value = day + '天' + h +"时" + m + "分" + s + "秒";
+        if(leftTime<=0){
+            document.getElementById('timeShow').value = "团购结束";
+            clearInterval(t);
+        }
+    }
+    showTime();
+    var t = setInterval("showTime()", 1000);
+
+</script>
+
+</body>
+</html>
